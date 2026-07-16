@@ -1,0 +1,48 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #080d1b;
+  color: #eef4ff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button { font: inherit; }
+
+.app { width: min(700px, calc(100% - 32px)); margin: 36px auto; text-align: center; }
+.header { margin-bottom: 24px; }
+.header h1 { margin: 6px 0; font-size: clamp(2rem, 6vw, 3.5rem); }
+.header p { margin: 0; color: #abb9d7; }
+.eyebrow { color: #72e3ff !important; font-size: .8rem; font-weight: bold; letter-spacing: .12em; text-transform: uppercase; }
+.scoreboard { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; padding: 12px 16px; border: 1px solid #2b416f; border-radius: 10px; background: #101b35; }
+.scoreboard p { margin: 0; color: #b7c7e9; }
+.scoreboard strong { color: #fff; }
+.game-board { position: relative; height: 420px; overflow: hidden; border: 2px solid #4d76c5; border-radius: 14px; background: radial-gradient(circle at top, #213b76 0, #101c3a 35%, #070b16 78%); box-shadow: 0 18px 40px rgba(0, 0, 0, .35); }
+.stars { position: absolute; inset: 0; background-image: radial-gradient(#fff 1px, transparent 1px), radial-gradient(#b4c9ff 1px, transparent 1px); background-position: 10px 16px, 54px 48px; background-size: 76px 76px, 112px 112px; opacity: .45; }
+.spaceship, .enemy, .bullet { position: absolute; z-index: 1; transform: translateX(-50%); line-height: 1; user-select: none; }
+.spaceship { bottom: 24px; font-size: 3.4rem; transition: left 120ms ease-out; }
+.gun-emoji { position: absolute; left: 50%; bottom: 52px; color: #f7f8ff; font-size: 1rem; white-space: nowrap; transform: translateX(-50%) rotate(-90deg); animation: gun-recoil 120ms infinite; }
+.enemy { animation: hover 1.8s ease-in-out infinite alternate; }
+.enemy img { display: block; width: 58px; height: 58px; border: 2px solid #85e2ff; border-radius: 50%; object-fit: cover; box-shadow: 0 0 12px rgba(101, 221, 255, .7); }
+.enemy-emoji { display: block; width: 58px; height: 58px; border: 2px solid #85e2ff; border-radius: 50%; font-size: 32px; line-height: 58px; text-align: center; box-shadow: 0 0 12px rgba(101, 221, 255, .7); background: rgba(255,255,255,0.02); }
+.bullet { width: 9px; height: 24px; border: 1px solid #5f3a12; border-radius: 2px 2px 4px 4px; background: linear-gradient(to right, #8b541d, #f2c46d 48%, #8d541b); box-shadow: 0 0 5px 2px rgba(255, 181, 58, .65); }
+.bullet::before { content: ""; position: absolute; top: -9px; left: -1px; width: 9px; height: 11px; border: 1px solid #6a717d; border-radius: 55% 55% 20% 20%; background: linear-gradient(to right, #555d69, #e0e5ea 50%, #606876); }
+.bullet::after { content: ""; position: absolute; bottom: -8px; left: 1px; width: 5px; height: 8px; border-radius: 50%; background: #ffe8a3; box-shadow: 0 0 9px 4px rgba(255, 130, 28, .8); }
+@keyframes hover { to { transform: translateX(-50%) translateY(8px); } }
+@keyframes gun-recoil { 50% { transform: translateX(-50%) translateY(3px) rotate(-90deg); } }
+.controls { margin-top: 18px; }
+.difficulty-picker { margin-bottom: 12px; color: #b7c7e9; }
+.difficulty-picker span { margin-right: 8px; }
+.difficulty-picker button { padding: 7px 12px; text-transform: capitalize; }
+.difficulty-picker .active-level { background: #315ba8; border-color: #93b8ff; }
+.controls button, .game-over button { margin: 0 5px; padding: 10px 16px; border: 1px solid #6288d8; border-radius: 8px; background: #172b55; color: #fff; cursor: pointer; }
+.controls button:hover, .game-over button:hover { background: #244582; }
+.controls button:disabled { cursor: not-allowed; opacity: .5; }
+.shoot-button { background: #c94f20 !important; border-color: #ffad5d !important; }
+.controls p { margin: 12px 0 0; color: #95a8cf; font-size: .9rem; }
+.game-over { position: absolute; z-index: 3; top: 50%; left: 50%; width: min(330px, calc(100% - 32px)); padding: 22px; border: 1px solid #86a8ec; border-radius: 12px; background: rgba(12, 28, 59, .96); box-shadow: 0 15px 45px rgba(0, 0, 0, .6); transform: translate(-50%, -50%); }
+.game-over h2 { margin: 0 0 6px; }
+.game-over p { margin: 0 0 14px; color: #c2d1ee; }
+
+@media (max-width: 480px) { .app { margin: 20px auto; } .scoreboard { flex-wrap: wrap; } .game-board { height: 360px; } .controls button { margin: 4px 2px; padding: 10px; } }
